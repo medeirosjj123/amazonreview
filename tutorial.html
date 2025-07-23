@@ -225,7 +225,7 @@
                 <p>Abra o terminal (ou Prompt de Comando no Windows) e execute:</p>
                 <div class="code-block">
 git clone https://github.com/medeirosjj123/amazonreview.git
-cd AmazonReviewGen
+cd amazonreview
                 </div>
             </div>
 
@@ -249,50 +249,169 @@ cp .env.example .env
         </div>
 
         <div class="section">
-            <h2>🔑 Obtendo as Chaves de API</h2>
+            <h2>🔐 O que é o arquivo .env e como configurá-lo</h2>
+            
+            <div class="warning">
+                <strong>📌 IMPORTANTE PARA INICIANTES:</strong> O arquivo .env é onde você guarda suas "senhas" (chaves de API) para o projeto funcionar. É como a chave da sua casa - você precisa dela para entrar, mas não deve compartilhar com ninguém!
+            </div>
+
+            <h3>Por que preciso de um arquivo .env?</h3>
+            <p>O arquivo .env guarda informações secretas (suas chaves de API) separadas do código principal. Isso é importante porque:</p>
+            <ul>
+                <li>✅ Suas chaves ficam seguras e não são enviadas para o GitHub</li>
+                <li>✅ Cada pessoa pode usar suas próprias chaves sem modificar o código</li>
+                <li>✅ É fácil trocar as chaves quando necessário</li>
+            </ul>
+
+            <h3>Como criar o arquivo .env (PASSO A PASSO DETALHADO)</h3>
             
             <div class="step">
-                <h3>1. Chave da API do Google Gemini (GRATUITA)</h3>
-                
+                <h4>Opção 1: Usando o editor de código (RECOMENDADO)</h4>
                 <ol>
-                    <li>Acesse: <a href="https://aistudio.google.com/app/apikey" target="_blank">https://aistudio.google.com/app/apikey</a></li>
-                    <li>Faça login com sua conta Google</li>
-                    <li>Clique em <strong>"Create API Key"</strong></li>
-                    <li>Selecione <strong>"Create API key in new project"</strong></li>
-                    <li>Copie a chave gerada (começa com "AIza...")</li>
+                    <li>Abra a pasta do projeto no seu editor (Cursor ou VS Code)</li>
+                    <li>Clique com o botão direito na lista de arquivos à esquerda</li>
+                    <li>Selecione "Novo Arquivo" ou "New File"</li>
+                    <li>Digite exatamente: <span class="inline-code">.env</span> (com o ponto na frente!)</li>
+                    <li>Pressione Enter para criar o arquivo</li>
+                </ol>
+                
+                <div class="tip">
+                    <strong>💡 Não está vendo o arquivo?</strong> Arquivos que começam com ponto (.) podem ficar ocultos. No VS Code/Cursor, eles aparecem normalmente. No Windows Explorer, ative "Mostrar arquivos ocultos".
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>Opção 2: Copiando o arquivo de exemplo</h4>
+                <p>Se houver um arquivo <span class="inline-code">.env.example</span> no projeto:</p>
+                <ol>
+                    <li>Encontre o arquivo <span class="inline-code">.env.example</span></li>
+                    <li>Copie ele (Ctrl+C ou Cmd+C)</li>
+                    <li>Cole na mesma pasta (Ctrl+V ou Cmd+V)</li>
+                    <li>Renomeie para apenas <span class="inline-code">.env</span> (remova o .example)</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔑 Obtendo as Chaves de API (SUPER DETALHADO)</h2>
+            
+            <div class="warning">
+                <strong>🤔 O que são chaves de API?</strong><br>
+                Pense nas chaves de API como senhas especiais que permitem seu projeto usar serviços externos (como o Google Gemini para gerar textos). Cada serviço tem sua própria chave, e você precisa criar uma conta (gratuita) para obter essas chaves.
+            </div>
+
+            <div class="step">
+                <h3>1. Chave da API do Google Gemini (GRATUITA E ESSENCIAL)</h3>
+                
+                <div class="success">
+                    <strong>✅ Esta é a chave mais importante!</strong> Sem ela, o projeto não funcionará. A boa notícia: é 100% gratuita!
+                </div>
+
+                <h4>Passo a passo COMPLETO:</h4>
+                <ol>
+                    <li>
+                        <strong>Acesse o site do Google AI Studio:</strong><br>
+                        <a href="https://aistudio.google.com/app/apikey" target="_blank">https://aistudio.google.com/app/apikey</a>
+                    </li>
+                    <li>
+                        <strong>Faça login com sua conta Google</strong><br>
+                        Use a mesma conta do Gmail, YouTube, etc.
+                    </li>
+                    <li>
+                        <strong>Clique no botão azul "Create API Key"</strong><br>
+                        Geralmente está no centro da tela
+                    </li>
+                    <li>
+                        <strong>Na janela que abrir, clique em "Create API key in new project"</strong><br>
+                        Isso criará um novo projeto automaticamente para você
+                    </li>
+                    <li>
+                        <strong>IMPORTANTE: Copie a chave que aparecer!</strong><br>
+                        - A chave parece com isso: <span class="inline-code">AIzaSyB3ghK9...</span> (bem longa)<br>
+                        - Clique no botão de copiar ou selecione tudo e copie (Ctrl+C ou Cmd+C)<br>
+                        - <strong style="color: red;">GUARDE ESSA CHAVE!</strong> Você vai precisar dela no próximo passo
+                    </li>
                 </ol>
 
                 <div class="tip">
-                    <strong>💡 Dica:</strong> A API do Gemini é gratuita para uso moderado. Perfeita para projetos de estudo!
+                    <strong>💡 Dica de Segurança:</strong> Você pode colar temporariamente em um bloco de notas enquanto configura o projeto, mas depois apague. Nunca envie essa chave por email ou mensagem!
                 </div>
             </div>
 
             <div class="step">
-                <h3>2. Chave da API do Firecrawl (OPCIONAL)</h3>
+                <h3>2. Chave da API do Firecrawl (OPCIONAL - Pule se quiser)</h3>
                 
+                <div class="warning">
+                    <strong>⚠️ Pode pular esta parte!</strong> O projeto funciona sem o Firecrawl. Ele só melhora um pouco a extração de dados, mas não é essencial.
+                </div>
+                
+                <p>Se quiser configurar mesmo assim:</p>
                 <ol>
                     <li>Acesse: <a href="https://www.firecrawl.dev/" target="_blank">https://www.firecrawl.dev/</a></li>
-                    <li>Crie uma conta gratuita</li>
-                    <li>No dashboard, vá em "API Keys"</li>
-                    <li>Copie sua chave de API</li>
+                    <li>Clique em "Start for free" ou "Sign up"</li>
+                    <li>Crie uma conta com seu email</li>
+                    <li>Após logar, procure por "API Keys" no menu</li>
+                    <li>Copie a chave que aparecer</li>
+                </ol>
+            </div>
+
+            <div class="step">
+                <h3>3. AGORA VAMOS CONFIGURAR O ARQUIVO .ENV</h3>
+                
+                <h4>📝 Passo a passo para adicionar as chaves:</h4>
+
+                <ol>
+                    <li>
+                        <strong>Abra o arquivo .env que você criou</strong><br>
+                        Use o editor de código (Cursor ou VS Code)
+                    </li>
+                    <li>
+                        <strong>Cole EXATAMENTE este conteúdo:</strong>
+                        <div class="code-block">
+GEMINI_API_KEY=cole_sua_chave_do_gemini_aqui
+FIRECRAWL_API_KEY=pode_deixar_vazio
+OPENAI_API_KEY=pode_deixar_vazio
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Substitua os valores:</strong><br>
+                        - Onde está <span class="inline-code">cole_sua_chave_do_gemini_aqui</span>, apague e cole a chave do Gemini que você copiou<br>
+                        - NÃO use aspas, espaços extras ou outros caracteres<br>
+                        - Exemplo correto:
+                        <div class="code-block">
+GEMINI_API_KEY=AIzaSyB3ghK9nPqR5tuV8wX9mN2oP4sT6uY1zAB
+FIRECRAWL_API_KEY=
+OPENAI_API_KEY=
+                        </div>
+                    </li>
+                    <li>
+                        <strong>Salve o arquivo:</strong><br>
+                        - Ctrl+S (Windows/Linux) ou Cmd+S (Mac)<br>
+                        - MUITO IMPORTANTE: Certifique-se de que salvou!
+                    </li>
                 </ol>
 
                 <div class="warning">
-                    <strong>⚠️ Nota:</strong> O Firecrawl tem limite gratuito. A ferramenta funciona mesmo sem ele, pois extrai o nome do produto diretamente da URL.
+                    <strong>❌ ERROS COMUNS (EVITE!):</strong><br>
+                    ❌ Não coloque aspas: <span style="color: red;">GEMINI_API_KEY="AIza..."</span> (ERRADO)<br>
+                    ❌ Não deixe espaços: <span style="color: red;">GEMINI_API_KEY = AIza...</span> (ERRADO)<br>
+                    ❌ Não esqueça de salvar o arquivo após editar!<br>
+                    ✅ Formato correto: <span style="color: green;">GEMINI_API_KEY=AIzaSy...</span> (CERTO)
                 </div>
             </div>
 
             <div class="step">
-                <h3>3. Configure o arquivo .env</h3>
-                <p>Abra o arquivo <span class="inline-code">.env</span> no seu editor e adicione:</p>
-                <div class="code-block">
-GEMINI_API_KEY=sua_chave_gemini_aqui
-FIRECRAWL_API_KEY=sua_chave_firecrawl_aqui
-OPENAI_API_KEY=deixe_vazio_se_nao_tiver
-                </div>
+                <h3>4. Como verificar se está tudo certo?</h3>
                 
-                <div class="warning">
-                    <strong>⚠️ IMPORTANTE:</strong> Nunca compartilhe suas chaves de API! O arquivo .env está no .gitignore para não ser enviado ao GitHub.
+                <ol>
+                    <li>O arquivo .env deve estar na pasta principal do projeto (mesma pasta do server.js)</li>
+                    <li>O nome do arquivo é exatamente <span class="inline-code">.env</span> (não .env.txt ou outro)</li>
+                    <li>A chave do Gemini está preenchida corretamente</li>
+                    <li>Você salvou o arquivo após adicionar as chaves</li>
+                </ol>
+
+                <div class="success">
+                    <strong>✅ Pronto!</strong> Se você seguiu todos os passos, suas chaves estão configuradas. Agora é só iniciar o projeto!
                 </div>
             </div>
         </div>
